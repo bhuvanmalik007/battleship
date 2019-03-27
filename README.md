@@ -16,4 +16,4 @@ This is an implementation of the game **Battleship** where the user can play aga
 - Clone the repo.
 - Change directory to the cloned repo.
 - Run the project on any HTTP server.
-- OR use the command `npx serve`
+- **OR** use the command `npx serve`
