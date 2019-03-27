@@ -63,8 +63,8 @@ export const shipForm = (container = document.getElementById('shipForm')) => {
             'Place horizontally (the front will be on the left)',
           ) + domNode('input', 'type="checkbox" class="shipRotate"', ''),
         ),
-      '<legend>Place all ships based on their <b>front portion</b> vertically</legend><br>',
-    ) + domNode('button', 'id="beginBtn"', 'Place');
+      '<legend>Place all ships based on their <b>front portion</b> (Default: vertically)</legend><br>',
+    ) + domNode('button', 'id="beginBtn"', 'LET THE BATTLE BEGIN!');
 
   const run = () => addChild(container, html);
   return {
