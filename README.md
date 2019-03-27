@@ -14,6 +14,6 @@ This is an implementation of the game **Battleship** where the user can play aga
 
 ### Instructions to run the code:
 - Clone the repo.
-- Change directory to the cloned repo.
+- Change directory in your CLI to the cloned repo.
 - Run the project on any HTTP server.
 - **OR** use the command `npx serve` (Prerequisite: Node.js version > 5.4)
