@@ -18,7 +18,7 @@ const main = () => {
 
   const createFleetSpec = () => [
     shipSpec(2),
-    shipSpec(3),
+    shipSpec(2),
     shipSpec(3),
     shipSpec(4),
     shipSpec(5),
@@ -85,7 +85,7 @@ const main = () => {
     for (let i = 0; i < 100; i += 1) {
       // eslint-disable-next-line no-undef
       const square = document.createElement('div');
-      square.classList.add('square');
+      square.classList.add('grid-item');
       square.id = `${context}-${i}`;
       if (context === 'shipSelect') {
         square.innerHTML = i;

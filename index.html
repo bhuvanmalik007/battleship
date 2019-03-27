@@ -1,64 +1,29 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Battleship</title>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="utf-8">
-</head>
-
-<body>
+  <head>
+    <title>Battleship</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="header"></div>
     <div id="container">
-        <h1>Battleship</h1>
-        <div id="shipPlacement">
-          <h3>
-            Classic Battleship Game Against Computer
-          </h3>
-          <form id="shipForm">
-            <legend>Place all ships based on their bow (front)</legend>
-            <fieldset>
-              <legend>Destroyer (length: 2)</legend>
-              <label>Square Number</label>
-              <input type="number" min="0" max="99" class="cellNumber"></input><br>
-              <label>Rotate sideways (the bow will be on the left)</label>
-              <input type="checkbox" class="shipRotate"></input>
-            </fieldset>
-            <fieldset>
-              <legend>Submarine (length: 3)</legend>
-              <label>Square Number</label>
-              <input type="number" min="0" max="99" class="cellNumber"></input><br>
-              <label>Rotate sideways (the bow will be on the left)</label>
-              <input type="checkbox" class="shipRotate"></input>
-            </fieldset>
-            <fieldset>
-              <legend>Cruiser (length: 3)</legend>
-              <label>Square Number</label>
-              <input type="number" min="0" max="99" class="cellNumber"></input><br>
-              <label>Rotate sideways (the bow will be on the left)</label>
-              <input type="checkbox" class="shipRotate"></input>
-            </fieldset>
-            <fieldset>
-              <legend>Battleship (length: 4)</legend>
-              <label>Square Number</label>
-              <input type="number" min="0" max="99" class="cellNumber"></input><br>
-              <label>Rotate sideways (the bow will be on the left)</label>
-              <input type="checkbox" class="shipRotate"></input>
-            </fieldset>
-            <fieldset>
-              <legend>Carrier (length: 5)</legend>
-              <label>Square Number</label>
-              <input type="number" min="0" max="99" class="cellNumber"></input><br>
-              <label>Rotate sideways (the bow will be on the left)</label>
-              <input type="checkbox" class="shipRotate"></input>
-            </fieldset>
-            <button id="beginBtn">Place</button>
-          </form>
-        </div>
+      <div id="subheader"></div>
+      <div id="shipPlacement">
+        <form id="shipForm"></form>
       </div>
-</body>
-<script type="module">
-  import main from './src/index.js';
-  main().startGame();
-</script>
-
+    </div>
+  </body>
+  <script type="module">
+    import { header, subHeader, shipForm } from './src/domCreator.js';
+    [subHeader, header, shipForm].map(x => x().run());
+  </script>
+  <script type="module">
+    import main from './src/index.js';
+    main().startGame();
+  </script>
 </html>

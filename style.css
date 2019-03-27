@@ -1,44 +1,66 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  background:   #85acca;
+  background: #f0f2f8;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Work Sans', sans-serif;
+  overflow-x: hidden;
 }
+
+#header {
+  display: flex;
+  color: #f0f2f8;
+  background: #30343f;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#subheader {
+  text-align: center;
+  width: 100%;
+}
+
 #container {
-  width: 70%;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .square {
   width: 30px;
   height: 30px;
   border: 1px solid black;
-  background-color: #e7cc97;
+  background-color: #6ccff6;
 }
+
 .square:hover {
   background-color: #928162;
   color: white;
 }
 .ship {
-  background-color: #544a37;
+  background-color: #414770;
 }
 .hit {
-  background-color: red;
+  background-color: #a23b72;
 }
 .miss {
-  background-color: white;
+  background-color: #f0f2f8;
 }
+
 #playerOneBoard {
   margin: 10px;
   width: 300px;
   height: 300px;
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
+
 #playerTwoBoard {
   margin: 10px;
   width: 500px;
@@ -46,60 +68,112 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
 #playerTwoBoard .square {
   width: 50px;
   height: 50px;
 }
+
 #shipPlacement {
-  width: 90%;
+  width: 100%;
+  margin: 20px;
+  display: flex;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 #shipPlacement h3 {
   margin: 10px;
 }
+
 #shipForm {
   margin-top: 10px;
   padding: 5px;
-  float: right;
+  display: flex;
+  flex-direction: column;
   font-size: 1.1em;
-  border: 1px solid #000000;
-  background-color: #556dcd;
+  border-radius: 5px;
+  border: solid 2px #0d2149;
 }
+
 #shipForm fieldset {
   padding: 5px;
-  border-color: #544a37;
 }
-#shipForm button,
+
+.cellNumber {
+  height: 40px;
+  padding: 5px;
+}
+
 #shipForm input {
-  font-size: 1.05em;
+  font-size: 14px;
 }
-#shipForm button {
-  margin: 5px 0;
-  width: 110px;
-  height: 33px;
-  color: rgb(255, 255, 255);
-  background-color: #7040ab;
-  border: none;
+
+#beginBtn {
+  height: 40px;
+  color: #f0f2f8;
+  background: #0d2149;
 }
+
+.input-label {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.check-label {
+  font-size: 12px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
 .shipSelect {
+  flex: 1;
+  justify-content: center;
   margin: 10px;
-  width: 350px;
-  height: 350px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
   text-align: center;
 }
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px #4a4a4a;
+}
+
+.grid-item:hover {
+  background: #d7d7d7;
+}
+
 .shipSelect .square {
   height: 35px;
   width: 35px;
   line-height: 35px;
 }
+
 .hide {
-  display: none;
+  display: none !important;
 }
+
 #invalidPlacement {
-  color: red;
-  font-size: 2em;
+  color: #f9ebe0;
+  background: #a23b72;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
 }
+
 .winner {
   position: absolute;
   top: 25%;
@@ -107,22 +181,24 @@ body {
   width: 300px;
   height: 300px;
   padding: 10px;
-  border: 3px solid #544a37;
-  background-color: #e7cc97;
+  border: 3px solid #0d2149;
+  background-color: #f0f2f8;
   text-align: center;
   font-size: 2em;
 }
+
 .winner p {
   margin-top: 100px;
 }
+
 #rematchBtn {
   position: relative;
   top: 100px;
   height: 45px;
   width: 150px;
-  font-size: .8em;
-  color: white;
-  background-color: #544a37;
+  font-size: 0.8em;
+  color: #f0f2f8;
+  background-color: #0d2149;
   border: none;
 }
 h1 {

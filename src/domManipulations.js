@@ -18,6 +18,7 @@ const gridCreator = context => {
 
 const gridRenderer = players => {
   const container = document.getElementById('container');
+  container.style.justifyContent = 'center';
   players.forEach(player => container.appendChild(gridCreator(player.name)));
   return true;
 };
@@ -59,7 +60,7 @@ const showShipPlacer = () => {
 
 const hidePlacementScreen = () => {
   const shipPlacement = document.getElementById('shipPlacement');
-  shipPlacement.classList.add('hide');
+  shipPlacement.parentNode.removeChild(shipPlacement);
 };
 
 const getUserShipPos = () => {
