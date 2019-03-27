@@ -94,7 +94,8 @@ const main = () => {
       return players[1].name;
     }
     if (gameBoardsArr[1].destroyedFleet()) {
-      return players[0].name;
+      // console.log(players[0].moves.length);
+      return { winner: players[0].name, movecount: players[0].moves.length };
     }
     return false;
   };

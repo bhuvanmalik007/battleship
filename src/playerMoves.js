@@ -19,7 +19,7 @@ const player = name => {
     return attack([x, y]);
   };
 
-  return { name, attack, randomMove };
+  return { name, attack, randomMove, moves };
 };
 
 export default player;

@@ -82,15 +82,17 @@ const getUserShipPos = () => {
   }, []);
 };
 
-const winnerModal = winner => {
+const winnerModal = result => {
   const container = document.getElementById('container');
   const modal = document.createElement('div');
   const modalMessage = document.createElement('p');
   const rematchForm = document.createElement('form');
   const rematchBtn = document.createElement('input');
-  const formattedName = winner === 'playerOne' ? 'You' : 'Computer';
+  const formattedName = result.winner === 'playerOne' ? 'You' : 'Computer';
   modal.classList.add('winner');
-  modalMessage.innerHTML = `${formattedName} won the game!`;
+  modalMessage.innerHTML = `${formattedName} won the game!<br>No of Moves: ${
+    result.movecount
+  }`;
   rematchBtn.id = 'rematchBtn';
   rematchBtn.type = 'submit';
   rematchBtn.value = 'Rematch';
