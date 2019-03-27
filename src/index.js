@@ -4,6 +4,7 @@ import player from './playerMoves.js';
 import shipSpec from './shipSpec.js';
 import {
   gridRenderer,
+  gridCreator,
   fleetRenderer,
   movesRenderer,
   winnerModal,
@@ -27,21 +28,15 @@ const main = () => {
   const initUserBoard = (customPos = []) => {
     const fleetSpec = createFleetSpec();
     const fleetPos = customPos;
-    if (fleetPos.length === 0) {
-      fleetPos.push({ coords: [0, 0], rotate: false });
-      fleetPos.push({ coords: [6, 0], rotate: false });
-      fleetPos.push({ coords: [0, 9], rotate: false });
-      fleetPos.push({ coords: [0, 2], rotate: true });
-      fleetPos.push({ coords: [4, 3], rotate: true });
-    }
     for (let i = 0; i < fleetSpec.length; i += 1) {
+      // Attach the coordinates
       const success = gameBoardsArr[0].shipDeployer(
         fleetPos[i].coords,
         fleetSpec[i],
         fleetPos[i].rotate,
       );
       if (!success) {
-        // reset fleet
+        // pop fleet
         for (let j = 0; j < fleetSpec.length; j += 1) {
           gameBoardsArr[0].fleet.pop();
         }
@@ -51,7 +46,7 @@ const main = () => {
     return true;
   };
 
-  const randomPlacement = () => {
+  const randomShipPlacement = () => {
     const x = Math.floor(Math.random() * 10);
     const y = Math.floor(Math.random() * 10);
     const sideWays = Math.floor(Math.random() * 2);
@@ -67,7 +62,7 @@ const main = () => {
     let placed;
     for (let i = 0; i < fleet.length; i += 1) {
       do {
-        shipPos = randomPlacement();
+        shipPos = randomShipPlacement();
         placed = gameBoardsArr[1].shipDeployer(
           shipPos.coords,
           fleet[i],
@@ -77,25 +72,7 @@ const main = () => {
     }
   };
 
-  const gridCreator = context => {
-    // eslint-disable-next-line no-undef
-    const grid = document.createElement('div');
-    grid.classList.add(context);
-    grid.id = `${context}Board`;
-    for (let i = 0; i < 100; i += 1) {
-      // eslint-disable-next-line no-undef
-      const square = document.createElement('div');
-      square.classList.add('grid-item');
-      square.id = `${context}-${i}`;
-      if (context === 'shipSelect') {
-        square.innerHTML = i;
-      }
-      grid.appendChild(square);
-    }
-    return grid;
-  };
-
-  const showShipPlacer = () => {
+  const showReferenceGrid = () => {
     // eslint-disable-next-line no-undef
     const shipPlacement = document.getElementById('shipPlacement');
     const grid = gridCreator('shipSelect');
@@ -151,12 +128,14 @@ const main = () => {
     };
   };
 
+  // Entry point
   const startGame = () => {
     // eslint-disable-next-line no-undef
     const beginBtn = document.getElementById('beginBtn');
-    showShipPlacer();
+    showReferenceGrid();
     beginBtn.onclick = event => {
       event.preventDefault();
+      // Check if the coordinates are correct and there are no collisions amongst the user's fleet
       const success = initUserBoard(getUserShipPos());
       if (success) {
         hidePlacementScreen();

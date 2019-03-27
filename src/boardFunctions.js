@@ -3,6 +3,7 @@ const gameBoard = () => {
   const hits = [];
   const misses = [];
 
+  // Determines collision of a coordinate with a ship
   const shipDetector = coords => {
     for (let index = 0; index < fleet.length; index += 1) {
       const member = fleet[index];
@@ -26,6 +27,7 @@ const gameBoard = () => {
     return false;
   };
 
+  // Validates input coordinates and checks for collision between user fleet
   const shipDeployer = (chosenCoords, shipSpec, rotate = false) => {
     if (
       chosenCoords[0] < 0 ||
@@ -66,6 +68,7 @@ const gameBoard = () => {
     return false;
   };
 
+  // Detects and updates hits & misses
   const receiveHit = coords => {
     const hit = shipDetector(coords);
     if (!hit) {
@@ -79,7 +82,9 @@ const gameBoard = () => {
     return true;
   };
 
+  // Check if an entire fleet has been destroyed to conclude the game
   const destroyedFleet = () => fleet.every(member => member.shipSpec.isSunk());
+
   return {
     fleet,
     hits,

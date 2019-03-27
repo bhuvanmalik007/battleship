@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const gridCreator = context => {
+const gridCreator = (context, squareClass) => {
   // eslint-disable-next-line no-undef
   const grid = document.createElement('div');
   grid.classList.add(context);
@@ -7,7 +7,10 @@ const gridCreator = context => {
   for (let i = 0; i < 100; i += 1) {
     // eslint-disable-next-line no-undef
     const square = document.createElement('div');
-    square.classList.add('square');
+    // eslint-disable-next-line no-unused-expressions
+    squareClass
+      ? square.classList.add('square')
+      : square.classList.add('grid-item');
     square.id = `${context}-${i}`;
     // eslint-disable-next-line no-unused-expressions
     context === 'shipSelect' && (square.innerHTML = i);
@@ -19,10 +22,13 @@ const gridCreator = context => {
 const gridRenderer = players => {
   const container = document.getElementById('container');
   container.style.justifyContent = 'center';
-  players.forEach(player => container.appendChild(gridCreator(player.name)));
+  players.forEach(player =>
+    container.appendChild(gridCreator(player.name, true)),
+  );
   return true;
 };
 
+// Display user fleet on grid
 const fleetRenderer = (context, fleet) => {
   const board = document.getElementById(`${context}Board`);
   fleet.forEach(member => {
@@ -39,6 +45,7 @@ const fleetRenderer = (context, fleet) => {
   return true;
 };
 
+// Display hits and misses on the computer grid
 const movesRenderer = (context, gameBoard) => {
   const board = document.getElementById(`${context}Board`);
   gameBoard.hits.forEach(hit => {
@@ -63,6 +70,7 @@ const hidePlacementScreen = () => {
   shipPlacement.parentNode.removeChild(shipPlacement);
 };
 
+// Retreive user fleet coordinates and orientation from form
 const getUserShipPos = () => {
   const rotations = document.querySelectorAll('.shipRotate');
   const shipsPosArr = Array.from(document.querySelectorAll('.cellNumber'));
@@ -72,8 +80,8 @@ const getUserShipPos = () => {
     const rotated = rotations[i].checked;
     return [...acc, { coords: [x, y], rotate: rotated }];
   }, []);
-  // return placements;
 };
+
 const winnerModal = winner => {
   const container = document.getElementById('container');
   const modal = document.createElement('div');
@@ -98,13 +106,15 @@ const showError = () => {
   if (!prevMsg) {
     const errorMsg = document.createElement('p');
     errorMsg.id = 'invalidPlacement';
-    errorMsg.innerHTML = 'Invalid ship coordinates. Please try again.';
+    errorMsg.innerHTML =
+      'Invalid ship coordinates. Please use the reference grid and try again.';
     shipPlacement.appendChild(errorMsg);
   }
 };
 
 export {
   gridRenderer,
+  gridCreator,
   fleetRenderer,
   movesRenderer,
   winnerModal,

@@ -1,3 +1,4 @@
+// Define length of a ship and track hits taken by it.
 const ship = length => {
   const hitboxes = new Array(length).fill(false, 0);
 
@@ -8,6 +9,7 @@ const ship = length => {
     }
     return false;
   };
+
   const isSunk = () => hitboxes.every(box => box);
   return {
     length,

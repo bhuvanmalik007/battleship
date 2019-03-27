@@ -1,5 +1,6 @@
 const player = name => {
   const moves = [];
+
   const attack = coords => {
     // If user click on an already attacked grid cell
     if (moves.some(move => move[0] === coords[0] && move[1] === coords[1])) {
@@ -11,11 +12,13 @@ const player = name => {
     }
     return false;
   };
+
   const randomMove = () => {
     const x = Math.floor(Math.random() * 10);
     const y = Math.floor(Math.random() * 10);
     return attack([x, y]);
   };
+
   return { name, attack, randomMove };
 };
 
